@@ -1,0 +1,20 @@
+@mixin nav($nav-color) {
+    #nav {
+        position: fixed;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100vw;
+        height: 4vh;
+        background-color: $nav-color;
+        box-shadow: 0 0 .5vw .2vw rgb(24, 24, 24);
+        z-index: 1;
+        a {
+            color: rgb(24, 24, 24);
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    }
+}

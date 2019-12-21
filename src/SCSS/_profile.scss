@@ -1,0 +1,90 @@
+@mixin profile($light-color, $global-back-color) {
+    %buttons {
+        width: 100%;
+        height: 4vh;
+        background-color: $light-color;
+        border: none;
+        outline: none;
+    }
+    %contents {
+        min-height: 40vh;
+        color: $light-color;
+        background-color: $global-back-color;
+        border: 2px solid $light-color;
+        border-top: none;
+        padding: .5vh .5vw;
+        transition-duration: .5s;
+    }
+
+    #wrapper {
+        position: relative;
+        .header {
+            display: flex;
+            justify-content: space-between;
+            .avatar-image {
+                display: inline-block;
+                width: 10vw;
+                height: 10vw;
+                box-shadow: 0 0 .3vw .3vw $light-color inset;
+                border-radius: 100%;
+            }
+            .imageless {
+                font-size: 6.5vw;
+                color: $light-color;
+                text-align: center;
+                background-color: $global-back-color;
+            }
+            #user-information {
+                display: inline-block;
+                .name {
+                    display: inline-block;
+                    text-align: center;
+                    margin: 0;
+                }
+            }
+        }
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: .4em;
+            margin-top: 10vh;
+            .container {
+                position: relative;
+                .button {
+                    @extend %buttons;
+                }
+                .content {
+                    @extend %contents;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    z-index: 1;
+                    ol {
+                        padding-left: 15%;
+                    }
+                    li {
+                        margin-bottom: 1vh;
+                    }
+                }
+                .hidden {
+                    display: none;
+                    
+                }
+            }
+        }
+        .posts {
+            margin-top: 2%;
+            .button {
+                @extend %buttons;
+            }
+            .content {
+                @extend %contents;
+                border: 2px solid $light-color;
+                margin-top: 3vh;
+                .titles {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

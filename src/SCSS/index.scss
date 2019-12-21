@@ -1,0 +1,37 @@
+@import 'nav';
+@import 'login';
+@import 'profile';
+
+$light-red: rgb(255, 60, 60);
+$strong-red: rgb(255, 30, 30);
+$nav-red-color: rgb(255, 30, 50);
+$light-gray: rgb(238, 238, 238);
+
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin:0;
+    overflow-x: hidden;
+}
+
+.general-container {
+  padding-top: 4vh;
+  width: 100vw;
+  min-height: 96vh;
+  background-color: rgb(24, 24, 24);
+  overflow: hidden;
+}
+.general-subcontainer {
+  width: 40vw;
+  min-height: 92vh;
+  margin: 0 auto;
+  padding: 2vh;
+  background-color: pink;
+}
+
+@mixin general($first-color, $strong-color, $global-back-color, $nav-color) {
+  @include nav($nav-color);
+  @include login($first-color, $strong-color, $global-back-color);
+  @include profile($first-color, $global-back-color);
+}
+
+@include general($light-red, $strong-red, $light-gray, $nav-red-color);
