@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const About = ({quantity, titles, items}) => {
+const About = ({quantity, id, titles, items}) => {
     const [visible, setVisible] = useState(new Array(quantity).fill(false));
 
     const handleVisible = (visibleStatus, number) => {
@@ -11,20 +11,25 @@ const About = ({quantity, titles, items}) => {
 
     const checkClassName = number => !visible[number] ? "content hidden" : "content";
     
-    const columns = new Array(quantity).fill(null).map((item, index) => {
+    const columns = new Array(quantity).fill(null).map((item, columnIndex) => {
             return(
                 <div 
                     className = "container"
+                    key = {id[columnIndex]}
                 >
                     <input 
                         className = "button"
                         type = "button"
-                        value = {checkValue(index)}
-                        onClick = {(e) => handleVisible(e.target.value, index)}
+                        value = {checkValue(columnIndex)}
+                        onClick = {(e) => handleVisible(e.target.value, columnIndex)}
                     />
-                    <div className = {checkClassName(index)}>
-                        <h3>{titles[index]}</h3>
-                        <ol>{items[index].map(item => <li>{item}</li>)}</ol>
+                    <div className = {checkClassName(columnIndex)}>
+                        <h3>
+                            {titles[columnIndex]}
+                        </h3>
+                        <ol>
+                            {items[columnIndex].map((item, index) => <li key = {columnIndex + index}>{item}</li>)}
+                        </ol>
                     </div>
                 </div>
             )

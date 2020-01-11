@@ -5,9 +5,12 @@ const Posts = ({posts}) => {
 
     const checkVisibility = () => visible ? "Hide posts" : "Show posts";
 
-    const postsItem = new Array(posts).fill(null).map((item) => {
+    const postsItem = new Array(posts).fill(null).map((item, index) => {
             return(
-                <div className = "content" >
+                <div 
+                    className = "content"
+                    key = {index}
+                >
                     <h2 className = "titles">
                         Example Title of the Post
                     </h2>
