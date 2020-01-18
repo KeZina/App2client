@@ -1,65 +1,51 @@
-import React, { useState } from 'react';
-import { useGet, usePost } from './requests';
+import React, { useState, useEffect } from 'react';
+import useRequest from './useRequest';
 
 const Main = () => {
-    const [paramsGet, setParamsGet] = useState({
-        url: "",
-        reload: 0,
-        options: {}
-    });
+    const [usersList, setUsersList] = useState([]);
+    const [booksList, setBooksList] = useState([]);
 
-    const [paramsPost, setParamsPost] = useState({
-        url: "",
-        reload: 0,
-        options: {body: {}}
-    });
-    const [inputValue, setInputValue] = useState({});
+    let {handleGet, handlePost, handleInput, users, books} = useRequest();
 
-
-
-    const handleGet = (e) => {
-        e.preventDefault();
-        setParamsGet({
-            ...paramsGet,
-            url: e.target.action,
-            reload: Math.random()
-        })
-    }
-
-    const handlePost = (e) => {
-        e.preventDefault();
-        setParamsPost({
-            ...paramsPost,
-            url: e.target.action,
-            reload: Math.random(),
-            options: {
-                body: JSON.stringify(inputValue)
-            }
-        })
-    }
-
-    const handleInput = (e) => {
-        setInputValue({
-            ...inputValue,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    let responseGet = useGet(paramsGet);
-    let responsePost = usePost(paramsPost);
+    useEffect(() => {
+        if(users) setUsersList(
+            users.map(item => {
+                return (
+                    <li>Name: {item.name}<br/>Age: {item.age}</li>
+                )
+            })
+        )
+    }, [users])
+    useEffect(() => {
+        if(books) setBooksList(
+            books.map(item => {
+                return (
+                    <li>Book: {item.book}<br/>Author: {item.author}</li>
+                )
+            })
+        )
+    }, [books])
 
     return(
         <div className = "general-container" >
-            <form action = "/back" method = "GET" onSubmit = {handleGet}>
+            <form action = "/users" method = "GET" onSubmit = {e => handleGet(e, "json")}>
                 <input type = "submit" value = "GET" />
             </form>
-            <form action = "/back" method = "POST" onSubmit = {handlePost}>
+            <form action = "/books" method = "GET" onSubmit = {handleGet}>
+                <input type = "submit" value = "GET" />
+            </form>
+            <form action = "/users" method = "POST" onSubmit = {handlePost}>
                 <input type = "text" name = "Login" onChange = {handleInput} placeholder = "Enter login" />
                 <input type = "password" name = "Password" onChange = {handleInput} placeholder = "Enter password" />
                 <input type = "submit" value = "POST" />
             </form>
             <h1 style = {{color: "red", fontSize: "5em", backgroundColor: "yellow", position: "relative", margin: "auto", top: "10vh"}}>
-                {responseGet}
+                <ul>
+                    {usersList}
+                </ul>
+                <ul>
+                    {booksList}
+                </ul>
             </h1> 
         </div>
     )
