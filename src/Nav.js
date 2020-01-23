@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login.js';
+import Registration from './Registration.js';
 
 const Nav = () => {
     const [loginTrigger, setLoginTrigger] = useState(false);
-    const handleTrigger = () => setLoginTrigger(!loginTrigger);
+    const [registrationTrigger, setRegistrationTrigger] = useState(false);
+
+    const handleLogin = () => {
+        if(registrationTrigger) setRegistrationTrigger(false);
+        setLoginTrigger(!loginTrigger);
+    }
+    const handleRegistration = () => {
+        if(loginTrigger) setLoginTrigger(false);
+        setRegistrationTrigger(!registrationTrigger);
+    }
 
     return(
         <>
@@ -12,17 +22,33 @@ const Nav = () => {
                 <Link to = '/' >
                     Main
                 </Link>
-                <Link to = '/Search'>
+                <Link to = '/search'>
                     Search
                 </Link>
-                <Link to = '/Profile'>
+                <Link to = '/profile'>
                     Profile
                 </Link>
-                <Link onClick = {handleTrigger}>
-                    Login
-                </Link>
+                <div>
+                    <Link onClick = {handleLogin}>
+                        Login
+                    </Link>
+                    <span>/</span>
+                    <Link onClick = {handleRegistration}>
+                        Registration
+                    </Link>
+                </div>
+                
             </nav>
-            {loginTrigger && <Login handleTrigger = {handleTrigger} />}
+            {loginTrigger && 
+            <Login
+                handleLogin = {handleLogin}
+                handleRegistration = {handleRegistration}
+            />}
+            {registrationTrigger &&
+            <Registration 
+                handleLogin = {handleLogin} 
+                handleRegistration = {handleRegistration} 
+            />}
         </>
     )
 } 

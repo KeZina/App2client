@@ -1,5 +1,6 @@
 @import 'nav';
 @import 'login';
+@import 'registration';
 @import 'profile';
 
 $light-red: rgb(255, 60, 60);
@@ -31,6 +32,7 @@ body{
 @mixin general($first-color, $strong-color, $global-back-color, $nav-color) {
   @include nav($nav-color);
   @include login($first-color, $strong-color, $global-back-color);
+  @include registration($first-color, $strong-color, $global-back-color);
   @include profile($first-color, $global-back-color);
 }
 
