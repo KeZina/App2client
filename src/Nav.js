@@ -1,20 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login.js';
-import Registration from './Registration.js';
+import { UserContext } from './UserContext';
 
 const Nav = () => {
     const [loginTrigger, setLoginTrigger] = useState(false);
-    const [registrationTrigger, setRegistrationTrigger] = useState(false);
+    const [linkSelector, setLinkSelector] = useState(null);
+    const handleTrigger = () => setLoginTrigger(!loginTrigger);
 
-    const handleLogin = () => {
-        if(registrationTrigger) setRegistrationTrigger(false);
-        setLoginTrigger(!loginTrigger);
-    }
-    const handleRegistration = () => {
-        if(loginTrigger) setLoginTrigger(false);
-        setRegistrationTrigger(!registrationTrigger);
-    }
+    const user = useContext(UserContext);
+
+    useEffect(() => {
+        // if(user){
+        //     if(user.auth) {
+        //         setLinkSelector(
+        //             <>
+        //                 <Link to = '/Profile'>
+        //                     Profile
+        //                 </Link>
+        //                 <Link onClick = {handleLogout}>
+        //                     Logout
+        //                 </Link>
+        //             </>
+        //         )
+        //     } else if(!user.auth) {
+        //         setLinkSelector(
+        //             <Link onClick = {handleTrigger}>
+        //                 Login
+        //             </Link>
+        //         )
+        //     }
+        // }
+        if(user.data.auth) {
+            setLinkSelector(
+                <>
+                    <Link to = '/Profile'>
+                        Profile
+                    </Link>
+                    <Link onClick = {user.logout}>
+                        Logout
+                    </Link>
+                </>
+            )
+        } else {
+            setLinkSelector(
+                <Link onClick = {handleTrigger}>
+                    Login
+                </Link>
+            )
+        }
+
+        
+    }, [user])
 
     return(
         <>
@@ -22,33 +59,12 @@ const Nav = () => {
                 <Link to = '/' >
                     Main
                 </Link>
-                <Link to = '/search'>
+                <Link to = '/Search'>
                     Search
                 </Link>
-                <Link to = '/profile'>
-                    Profile
-                </Link>
-                <div>
-                    <Link onClick = {handleLogin}>
-                        Login
-                    </Link>
-                    <span>/</span>
-                    <Link onClick = {handleRegistration}>
-                        Registration
-                    </Link>
-                </div>
-                
+                {linkSelector}
             </nav>
-            {loginTrigger && 
-            <Login
-                handleLogin = {handleLogin}
-                handleRegistration = {handleRegistration}
-            />}
-            {registrationTrigger &&
-            <Registration 
-                handleLogin = {handleLogin} 
-                handleRegistration = {handleRegistration} 
-            />}
+            {loginTrigger && <Login handleTrigger = {handleTrigger} />}
         </>
     )
 } 
