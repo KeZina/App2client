@@ -1,10 +1,6 @@
-import React, { useContext } from 'react';
-import { UserContext } from './UserContext';
+import React from 'react';
 
 const Main = () => {
-    const user = useContext(UserContext)
-    console.log(user)
-
     return(
         <div  className = "general-container" >
 

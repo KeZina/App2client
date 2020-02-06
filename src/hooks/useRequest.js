@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 
-// if post request, get user token
-// if get request, just get data
+
 
 const useRequest = () => {
     const [url, setUrl] = useState("");
@@ -10,7 +9,7 @@ const useRequest = () => {
     const [options, setOptions] = useState({});
 
     const [tempData, setTempData] = useState({});
-    const [dataGet, setDataGet] = useState({});
+    const [GET, setGET] = useState({});
 
     const handleGet = (e, type = null) => {
         e.preventDefault();
@@ -59,7 +58,7 @@ const useRequest = () => {
     }, [reload])
 
     useEffect(() => {
-        if(tempData.GET) setDataGet({...dataGet, ...tempData.GET})
+        if(tempData.GET) setGET({...GET, ...tempData.GET})
     }, [tempData.GET])
     
     useEffect(() => {
@@ -69,11 +68,11 @@ const useRequest = () => {
     }, [tempData.POST])
 
     console.log(tempData.POST)
-    
+
     return {
         handleGet, 
         handlePost, 
-        dataGet,
+        GET,
         ...tempData
     };
 }

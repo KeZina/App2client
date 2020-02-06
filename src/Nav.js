@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login.js';
-import { UserContext } from './UserContext';
+import { UserContext } from './context';
 
 const Nav = () => {
     const [loginTrigger, setLoginTrigger] = useState(false);
@@ -11,26 +11,6 @@ const Nav = () => {
     const user = useContext(UserContext);
 
     useEffect(() => {
-        // if(user){
-        //     if(user.auth) {
-        //         setLinkSelector(
-        //             <>
-        //                 <Link to = '/Profile'>
-        //                     Profile
-        //                 </Link>
-        //                 <Link onClick = {handleLogout}>
-        //                     Logout
-        //                 </Link>
-        //             </>
-        //         )
-        //     } else if(!user.auth) {
-        //         setLinkSelector(
-        //             <Link onClick = {handleTrigger}>
-        //                 Login
-        //             </Link>
-        //         )
-        //     }
-        // }
         if(user.data.auth) {
             setLinkSelector(
                 <>
@@ -49,8 +29,6 @@ const Nav = () => {
                 </Link>
             )
         }
-
-        
     }, [user])
 
     return(

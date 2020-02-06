@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 // get user data (name, age etc);
 
-const useCheckAuth = () => {
+const useCheckAuth = (depends) => {
     const anonimus = {
         name: null,
         age: null,
@@ -16,23 +16,20 @@ const useCheckAuth = () => {
         setData(anonimus);
     }
 
-    const token = localStorage.getItem("token");
-
     useEffect(() => {
-        if(token) {
+        if(localStorage.getItem("token")) {
             (async () => {
                 const response = await fetch('/users/auth', {
                     method: "POST",
                     headers: {
-                        "Authorization": token
+                        "Authorization": localStorage.getItem("token")
                     }
                 })
-                
                 const result = await response.json();
                 setData(result)
             })()
-        } else if(!token) setData(anonimus)
-    }, [localStorage.getItem("token")])
+        } else if(!localStorage.getItem("token")) setData(anonimus)
+    }, [depends])
 
     return {
         data,
