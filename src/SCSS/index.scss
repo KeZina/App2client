@@ -1,3 +1,4 @@
+@import 'loading';
 @import 'nav';
 @import 'login';
 @import 'profile';
@@ -29,6 +30,7 @@ body{
 }
 
 @mixin general($first-color, $strong-color, $global-back-color, $nav-color) {
+  @include loading();
   @include nav($nav-color);
   @include login($first-color, $strong-color, $global-back-color);
   @include profile($first-color, $global-back-color);

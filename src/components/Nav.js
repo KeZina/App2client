@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Login from './Login.js';
-import { UserContext } from './context';
+import { UserContext } from '../context';
 
 const Nav = () => {
     const [loginTrigger, setLoginTrigger] = useState(false);
@@ -11,7 +11,7 @@ const Nav = () => {
     const user = useContext(UserContext);
 
     useEffect(() => {
-        if(user.data.auth) {
+        if(user.data && user.data.auth) {
             setLinkSelector(
                 <>
                     <Link to = '/Profile'>
@@ -42,7 +42,9 @@ const Nav = () => {
                 </Link>
                 {linkSelector}
             </nav>
-            {loginTrigger && <Login handleTrigger = {handleTrigger} />}
+            {loginTrigger && 
+                <Login handleTrigger = {handleTrigger} />
+            }
         </>
     )
 } 

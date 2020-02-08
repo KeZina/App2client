@@ -1,37 +1,42 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { UserContext, RequestContext } from './context';
+import { UserContext, RequestContext } from '../context';
 import Nav from './Nav';
 import Main from './Main';
 import Search from './Search';
 import Profile from './profile/Profile';
-import useAuth from './hooks/useAuth';
-import useRequest from './hooks/useRequest';
+import useAuth from '../hooks/useAuth';
+import useRequest from '../hooks/useRequest';
+import Loading from './Loading';
 
 const App = () => {
-  const {handleGet, handlePost, GET, POST} = useRequest();
+  const {handleGet, handleForm, GET, POST} = useRequest();
   const request = {
     handleGet,
-    handlePost,
+    handleForm,
     GET,
     POST
   }
 
-  const {data, logout} = useAuth(POST);
+  console.log(POST)
+
+  const {loading, logout, data} = useAuth(POST);
   const user = {
-    data,
-    logout
+    loading,
+    logout,
+    data
   }
 
   return (
     <UserContext.Provider value = {user}>
       <RequestContext.Provider value = {request}>
         <BrowserRouter>
+            <Loading />
             <Nav />
             <Switch>
               <Route exact path = '/' component = {Main} />
               <Route exact path = '/search' component = {Search} />
-              {user.data.auth &&
+              {user.data && user.data.auth &&
                 <Route exact path = '/profile' component = {Profile} />
               }
             </Switch>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 // get user data (name, age etc);
 
-const useCheckAuth = (depends) => {
+const useAuth = (depends) => {
     const anonimus = {
         name: null,
         age: null,
@@ -10,11 +10,20 @@ const useCheckAuth = (depends) => {
         auth: false
     }
     const [data, setData] = useState(anonimus);
+    const [loading, setLoading] = useState(false)
 
     const logout = () => {
         localStorage.removeItem("token");
         setData(anonimus);
     }
+
+    useEffect(() => {
+        if(data === anonimus && localStorage.getItem("token")) {
+            setLoading(true)
+        } else if(data !== anonimus) {
+            setLoading(false)
+        }
+    }, [data])
 
     useEffect(() => {
         if(localStorage.getItem("token")) {
@@ -32,9 +41,10 @@ const useCheckAuth = (depends) => {
     }, [depends])
 
     return {
-        data,
-        logout
+        loading,
+        logout,
+        data
     }
 }
 
-export default useCheckAuth;
+export default useAuth;

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { RequestContext } from './context';
+import { RequestContext } from '../context';
 
 const Login = ({handleTrigger}) => {
     const login = {
@@ -17,7 +17,7 @@ const Login = ({handleTrigger}) => {
     const request = useContext(RequestContext)
 
     const handleSubmit = (e) => {
-        request.handlePost(e);
+        request.handleForm(e);
         handleTrigger();
     }
 
