@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { RequestContext } from '../context';
+import { UserContext } from '../context';
 
 const Login = ({handleTrigger}) => {
     const login = {
@@ -13,11 +13,12 @@ const Login = ({handleTrigger}) => {
         action: "/users/create",
         switchText: "Already have an account? Log In "
     }
+    
     const [form, setForm] = useState(login)
-    const request = useContext(RequestContext)
+    const user = useContext(UserContext)
 
     const handleSubmit = (e) => {
-        request.handleForm(e);
+        user.login(e);
         handleTrigger();
     }
 
