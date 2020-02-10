@@ -1,11 +1,11 @@
 import React from 'react';
 import Avatar from './Avatar.js';
-import UserInformation from './UserInformation.js'
+import UserData from './UserData'
 
 const Header = () => {
     return(
         <header className = "header">
-            <UserInformation />
+            <UserData />
             <Avatar url />
         </header>
     )

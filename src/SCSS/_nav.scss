@@ -3,10 +3,10 @@
         position: fixed;
         top: 0;
         display: flex;
-        align-items: center;
         justify-content: space-around;
+        align-items: stretch;
         width: 100vw;
-        height: 4vh;
+        height: 1.6em;
         background-color: $nav-color;
         box-shadow: 0 0 .5vw .2vw rgb(24, 24, 24);
         z-index: 1;
@@ -16,9 +16,23 @@
             font-size: 1.2em;
             font-weight: 600;
         }
-        div > span {
-            font-size: 1.2em;
-            font-weight: 600;
+        .contacts {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 8vw;
+            div {
+                position: absolute;
+                top: 1.6em;
+                display: flex;
+                flex-direction: column;
+                background-color: $nav-color;
+                a {
+                    padding: .5em;
+                    border-bottom: 2px solid black;
+                }
+            }
+
         }
     }
 }

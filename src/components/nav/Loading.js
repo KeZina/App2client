@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../context';
+import { UserContext } from '../../context';
 
 const Loading = () => {
     const user = useContext(UserContext);

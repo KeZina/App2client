@@ -37,6 +37,16 @@ const useAuth = () => {
         setData(anonimus);
     }
 
+    const deleteUser = () => {
+        setUrl("/users/delete");
+        setReload(Math.random());
+        setOptions({
+            method: "DELETE",
+        })
+        localStorage.removeItem("token");
+        setData(anonimus);
+    }
+
     // const isAuth = () => {
     //     setUrl("/users/auth");
     //     setReload(Math.random());
@@ -88,6 +98,7 @@ const useAuth = () => {
         loading,
         login,
         logout,
+        deleteUser,
         data
     }
 }

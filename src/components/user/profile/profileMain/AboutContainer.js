@@ -15,16 +15,6 @@ const AboutContainer = () => {
         },
         {
             id: Math.round(Math.random() * 1e9),
-            title: "Add auth with Firebase",
-            items: ["Read more about Firebase", "Check if Firebase install correct"],
-        },
-        {
-            id: Math.round(Math.random() * 1e9),
-            title: "Resolve other tasks",
-            items: ["Add Redux", "Maybe need to add Redux-Saga", "Change <Main />", "Add theme selector (maybe with React context)"],
-        },
-        {
-            id: Math.round(Math.random() * 1e9),
             title: "Change <Search />",
             items: ["Add group searching", "Add people searching", "Add other searching"]
         },

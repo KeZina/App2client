@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../context';
+import { UserContext } from '../../context';
 
 const Login = ({handleTrigger}) => {
     const login = {

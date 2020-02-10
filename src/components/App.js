@@ -1,25 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { UserContext } from '../context';
-import Nav from './Nav';
-import Main from './Main';
-import Search from './Search';
-import Profile from './profile/Profile';
+import Nav from './nav/Nav';
+import Main from './nav/Main';
+import Search from './nav/Search';
+import Profile from './user/profile/Profile';
+import Loading from './nav/Loading';
 import useAuth from '../hooks/useAuth';
-import Loading from './Loading';
 
 const App = () => {
-  const {loading, login, logout, data} = useAuth();
+  const {loading, login, logout, deleteUser, data} = useAuth();
   const user = {
     loading,
     login,
     logout,
+    deleteUser,
     data
   }
 
   return (
     <UserContext.Provider value = {user}>
-      <BrowserRouter>
+      <Router>
           <Loading />
           <Nav />
           <Switch>
@@ -29,7 +30,7 @@ const App = () => {
               <Route exact path = '/profile' component = {Profile} />
             }
           </Switch>
-      </BrowserRouter>
+      </Router>
     </UserContext.Provider>
   ) 
 }

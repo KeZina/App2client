@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import { useState} from 'react';
 
 const useGet = () => {
     let {setUrl, setReload, setOptions, data: tempData} = useFetch();
