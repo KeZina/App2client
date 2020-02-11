@@ -1,10 +1,11 @@
 import React from 'react';
+import Container from '../Container';
 
 const Search = () => {
     return(
-        <div className = "general-container">
-
-        </div>
+        <Container>
+            
+        </Container>
     )
 }
 

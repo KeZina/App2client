@@ -16,8 +16,10 @@
         transition-duration: .5s;
     }
 
-    #wrapper {
-        position: relative;
+    // #wrapper {
+    //     display: flex;
+    //     flex-direction: column;
+    //     position: relative;
         .header {
             display: flex;
             justify-content: space-between;
@@ -86,5 +88,5 @@
                 }
             }
         }
-    }
+    // }
 }

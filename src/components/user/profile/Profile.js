@@ -1,19 +1,16 @@
 import React from 'react';
-import Header from './profileHeader/Header.js';
-import AboutContainer from './profileMain/AboutContainer.js';
+import Container from '../../Container';
+import Header from './profileHeader/Header';
+import AboutContainer from './profileMain/AboutContainer';
 import PostsContainer from './profileMain/PostsContainer';
 
 const Profile = () => {
     return(
-        <div className = "general-container">
-            <div className = "general-subcontainer">
-                <div id = "wrapper">
-                    <Header />
-                    <AboutContainer />  
-                    <PostsContainer />
-                </div>
-            </div>
-        </div>
+        <Container level = {3}>
+            <Header />
+            <AboutContainer />  
+            <PostsContainer />
+        </Container>
     )
 }
 

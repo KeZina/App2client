@@ -21,9 +21,8 @@ const useFetch = () => {
                     else if(parsingType === "arrayBuffer") return response.arrayBuffer();
                     else return response.json();
                 })()
+                
                 setData({...result})
-                console.log(data, url)
-
             } catch(e) {
                 console.log(`Something went wrond, ${e} :(`)
             }
